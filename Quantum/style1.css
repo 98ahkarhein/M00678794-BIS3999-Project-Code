@@ -1,0 +1,93 @@
+
+.textboxd1
+{
+  border-style: none;
+  border:1px solid #0e7598;
+  width: 400px;
+  height: 40px;
+  border-radius: 4px;
+  text-align: center;
+  box-shadow: 3px 6px 6px #666;
+  font-size: 16px;
+}
+.btnd
+{
+	border-style: none;
+	width: 148px;
+	height: 40px;
+	border-radius: 4px;
+	text-align: center;
+	box-shadow: 1px 1px 3px #666;
+	background: #f00303;
+	color: #FFF;
+	font-weight: bold;
+}
+.btnd:hover
+{
+	border-style: none;
+	width: 148px;
+	height: 40px;
+	border-radius: 4px;
+	text-align: center;
+	box-shadow: 1px 1px 3px #666;
+	background: #FA9999;
+	color: #FFF;
+	font-weight: bold;
+}
+.bar
+{
+	background: transparent;
+	padding: 40px;
+	border-radius: 8px;
+	box-shadow: 4px 4px 8px #58D3F7;
+}
+.btnLink
+{
+	text-decoration: none;
+	width:auto;
+	height:auto;
+	padding: 10px;
+	border-style: none;
+	border:1px solid #f00303;
+	color: #f00303;
+	font-weight: bold;
+	font-size: 25px;
+	border-radius: 5px;
+	
+}
+.btnLink:hover
+{
+	text-decoration: none;
+	width:auto;
+	height:auto;
+	padding: 10px;
+	border-style: none;
+	border:1px solid #FA9999;
+	color: #FA9999;
+	font-weight: bold;
+	font-size: 25px;
+	border-radius: 5px;
+}
+.textboxd2
+{
+  border-style: none;
+  border:1px solid #0e7598;
+  width: 200px;
+  height: 40px;
+  border-radius: 4px;
+  text-align: center;
+  box-shadow: 3px 6px 6px #666;
+  font-size: 16px;
+}
+.btnd1
+{
+	border-style: none;
+	width: 100px;
+	height: 40px;
+	border-radius: 4px;
+	text-align: center;
+	box-shadow: 1px 1px 3px #666;
+	background: #0f8bb5;
+	color: #FFF;
+	font-weight: bold;
+}
