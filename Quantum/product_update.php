@@ -11,7 +11,7 @@
 		$ret=mysqli_query($mysqli,$query);
 		$num=mysqli_num_rows($ret);
 		$row=mysqli_fetch_array($ret);
-		//$txtproductid=$row['product_id'];
+		$txtproductid=$row['product_id'];
 		$txtproductname=$row['product_name'];
 		$cbocategoryid=$row['category_category_id'];
 		$cbobrandid=$row['brand_brand_id'];
@@ -88,7 +88,7 @@
 	<table align="center" cellpadding="7">	
 	<tr>
 		<td>Product ID</td>
-		<td><input type="text" name="txtproductid" value="<?php echo "P-" . uniqid(); ?>" ></td>
+		<td><input type="text" name="txtproductid" value="<?php echo $txtproductid ?>" ></td>
 	</tr>
 	<tr>
 		<td>Product Name</td>
