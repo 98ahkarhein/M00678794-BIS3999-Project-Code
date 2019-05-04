@@ -1,7 +1,8 @@
 <?php 
-//error_reporting(0);
 session_start();
-include ('connect.php');
+//error_reporting(0);
+
+require ('connect.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -104,7 +105,7 @@ include ('connect.php');
 				<img src="<?php echo 'productimage/' . $productimg1 ?>" width="<?php echo $w ?>" height="<?php echo $h ?>">
 					<b><h3><?php echo $productname ?></h3></b>
 					<b><h5><?php echo $saleprice ?> USD</h5></b>
-					<a class="btnLink" href="sale_product_detail.php?CID=<?php echo $categoryid; ?> & PID=<?php echo $productid; ?>">Detail</a>
+					<a class="btnLink" href="product_detail.php?CID=<?php echo $categoryid; ?>&PID=<?php echo $productid; ?>">Detail</a>
 			</td>
 		<td></td>
 		<?php
@@ -148,7 +149,7 @@ else
 				<img src=" <?php echo 'productimage/' . $productimg1 ?>" width="<?php echo $w ?>" height="<?php echo $h ?>">
 					<b><h3><?php echo $productname ?></h3></b>
 					<b><h5>£<?php echo $saleprice ?></h5></b>
-					<a class="btnLink" href="sale_product_detail.php?CID=<?php echo $categoryid; ?> & PID=<?php echo $productid; ?>">Detail</a>
+					<a class="btnLink" href="product_detail.php?CID=<?php echo $categoryid; ?>&PID=<?php echo $productid; ?>">Detail</a>
 			</td>
 		<td></td>
 		<?php
