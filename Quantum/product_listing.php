@@ -6,19 +6,68 @@
 	{
 		
 		$productid=$_REQUEST['product_id'];
+	$deletemovie="DELETE FROM phone WHERE product_product_id='$productid'";
+	$deletemusic="DELETE FROM computer WHERE product_product_id='$productid'";
+	$deletegame="DELETE FROM tv WHERE product_product_id='$productid'";
+	$retmoive=mysqli_query($mysqli,$deletemovie);
+	if ($retmoive) 
+	{
 		$delete="DELETE FROM product WHERE product_id='$productid'";
-		$ret=mysqli_query($con,$delete);
+		$ret=mysqli_query($mysqli,$delete);
 		if ($ret) 
 		{
 			echo "<script>window.alert('Sucessfully Deleted')</script>";
-			echo "<script>window.location='product_listing.php'</script>";
+			echo "<script>window.location='product_listing.php'</script>";	
 		}
 		else
 		{
-			echo "Error:".$delete ."<br>".mysqli_error($mysqli);
+			echo "Error:".$delete."<br>".mysqli_error($con);
 		}
 	}
- ?>
+	else
+	{
+		echo "Error:".$deletemovie."<br>".mysqli_error($con);
+	}
+	$retmusic=mysqli_query($mysqli,$deletemusic);
+	if ($retmoive) 
+	{
+		$delete="DELETE FROM product WHERE product_id='$productid'";
+		$ret=mysqli_query($mysqli,$delete);
+		if ($retmusic) 
+		{
+			echo "<script>window.alert('Sucessfully Deleted')</script>";
+			echo "<script>window.location='product_listing.php'</script>";	
+		}
+		else
+		{
+			echo "Error:".$delete."<br>".mysqli_error($con);
+		}
+	}
+	else
+	{
+		echo "Error:".$deletemusic."<br>".mysqli_error($con);
+	}		
+	$retgame=mysqli_query($mysqli,$deletegame);
+	if ($retgame) 
+	{
+		$delete="DELETE FROM product WHERE product_id='$productid'";
+		$ret=mysqli_query($mysqli,$delete);
+		if ($ret) 
+		{
+			echo "<script>window.alert('Sucessfully Deleted')</script>";
+			echo "<script>window.location='product_listing.php'</script>";	
+		}
+		else
+		{
+			echo "Error:".$delete."<br>".mysqli_error($con);
+		}
+	}
+	else
+	{
+		echo "Error:".$deletegame."<br>".mysqli_error($con);
+	}		
+}
+?>
  <!DOCTYPE html>
 <html>
 <head>
