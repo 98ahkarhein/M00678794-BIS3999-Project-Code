@@ -1,9 +1,10 @@
 <?php
-error_reporting(0);
 session_start();
-require ('connect.php');
-require ('ShoppingCartFunction.php');
+//var_dump($_SESSION['ShoppingCart.php']);
+require ("connect.php");
+require ("ShoppingCartFunction.php");
 //-------------------------------
+//$ProductID=$_GET['txtproductid'];
 if(isset($_GET['action']))
 {
 	$action=$_GET['action'];
@@ -13,24 +14,24 @@ else
 	$action="";
 }
 //------------------------------
-if($action==="add")
+if($action==="buy")
 {
-	$ProductID=$_GET['product_id'];
-	$Quantity=$_GET['quantity']; 
+	$ProductID=$_GET['txtproductid'];
+	$Quantity=$_GET['txtqty']; 
 	Insert($ProductID,$Quantity);
 }
 elseif($action==="remove")
 {
-	$ProductID=$_GET['product_id'];
+	$ProductID=$_GET['txtproductid'];
 	Remove($ProductID);		
 }
 elseif($action==="clear")
 {
 	Clear();
+
 }
 ?>
 <title>Shopping Cart</title>
-<link rel="stylesheet" type="text/css" href="style1.css">
 </head>
 <body>
 <fieldset>
@@ -40,11 +41,11 @@ elseif($action==="clear")
 	<td>
     <hr/>
     <?php
-	if(isset($_SESSION["ShoppingCart"]))
+	if(!isset($_SESSION["ShoppingCart"]))
     {
         echo "<p>Your Shopping Cart is Empty</p>";
-        //echo "<img src='images/Shoppingcart_empty.png' width='150' height='150' />";
-        echo "<p>Total Amount :  $0</p>";
+        echo "<img src='shoppingcartempty.png' width='150' height='150' />";
+        echo "<p>Total Amount :  £0 </p>";
         echo "<a href='home_page.php'>Product Display</a>";
         exit();
     }
@@ -52,30 +53,40 @@ elseif($action==="clear")
     </td>
 </tr>
 </table>
-<table class='#' align="center" width="50%" height="50%"  cellspacing="5px">
+<table class='#' align="center" width="100%" height="100%"  cellspacing="5px">
     <tr>
         <th>Image</th>
         <th>Product Name</th>
         <th>Price</th>
         <th>Quantity</th>
+        <th>Sub Amount</th>
 		<th>Action</th>
     </tr>
-   
+    <?php
+	$size=count($_SESSION['ShoppingCart']);	  
+	for($i=0;$i<$size;$i++)
+	{
+	?>
         <tr>
            <?php
 				$img=$_SESSION['ShoppingCart'][$i]['product_img1'];
-				list($width, $height, $type, $attr)=getimagesize($img);
+				list($width, $height, $type, $attr)=getimagesize('productimage/' . $img);
 				$w=$width/7;
 				$h=$height/7;
 			?>
 			<th align="center">
-				<img src="MK11PS4.jpg" width="200px" />
+				<img src="<?php echo 'productimage/' . $img; ?>" 
+				width="<?php echo $w ?>" height="<?php echo $h ?>" />
 			</th>
-			<th>Mortal Kombat 11</th>
-			<th>£40</th>
-			<th>1</th>
+			<th><?php echo $_SESSION['ShoppingCart'][$i]['product_name']?></th>
+			<th id="idprice">£<?php echo $_SESSION['ShoppingCart'][$i]['price']?></th>
+			<th>
+                <input type="text" value="<?php echo $_SESSION['ShoppingCart'][$i]['quantity']?>" name="txtqty" id="idquantity"  size="1" onkeypress="Get_TotalAmount()"/></td>
+            <th onkeypress="Get_TotalAmount()">£
+            <?php echo $_SESSION['ShoppingCart'][$i]['quantity'] * $_SESSION['ShoppingCart'][$i]['price']?>
+            </th>
             <th>
-                <a href="ShoppingCart.php?action=remove&product_id=<?php echo $_SESSION['ShoppingCart'][$i]['product_id']?>">Remove</a>
+                <a href="ShoppingCart.php?action=remove&ProductID=<?php echo $_SESSION['ShoppingCart'][$i]['product_id']?>">Remove</a>
             </th>
         </tr>
         <tr>
@@ -83,7 +94,7 @@ elseif($action==="clear")
             </td>
         </tr>
     <?php
-	
+	}
 	?>
     <tr>
     	<td colspan="9" align="right">
@@ -91,12 +102,12 @@ elseif($action==="clear")
                 <tr>
                     <td>
                         <br/>
-                        <h2 class="paid_label">Total Amount&nbsp;&nbsp;: <?php //echo Get_TotalAmount() ?> £40</h1>
-                        <h2 class="paid_label">Total Quantity&nbsp;: <?php //echo Get_TotalQuantity() ?> 1pcs</h1>
+                        <h2  class="paid_label">Total Amount&nbsp;&nbsp;: £<?php echo Get_TotalAmount() ?></h1>
+                        <h2 class="paid_label">Total Quantity&nbsp;: <?php echo Get_TotalQuantity() ?> pcs</h1>
                         <hr class="reddot" />
-                        <a class="btnLink" href="home_page.php">Product Display</a>&nbsp; |
-                        <a class="btnLink" href="ShoppingCart.php?action=clear">Empty Cart</a>&nbsp; |
-                        <a class="btnLink" href="CheckOut.php">Check Out</a>
+                        <a class="btn btn-success" href="home_page.php">Product Display</a>&nbsp; |
+                        <a class="btn btn-danger" href="ShoppingCart.php?action=clear">Empty Cart</a>&nbsp; |
+                        <a class="btn btn-primary" href="checkout.php">Check Out</a>
                     </td>
                 </tr>
 				<tr>
